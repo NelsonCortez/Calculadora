@@ -20,7 +20,7 @@
         <TextView
             android:id="@+id/txtRes"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="183dp"
             android:background="#FFEB3B"
             android:text="0"
             android:textAlignment="textEnd"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Primer Numero"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:textSize="30sp" />
 
         <EditText
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Segundo Numero"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:textSize="30sp" />
 
         <LinearLayout

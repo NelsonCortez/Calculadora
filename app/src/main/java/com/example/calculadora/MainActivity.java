@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
     private TextView txtRes;
     private EditText txtNum1;
@@ -16,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btnRes;
     private Button btnMul;
     private Button btnDiv;
-    private Float Num1;
-    private Float Num2;
+    private double Num1;
+    private double Num2;
     private String Resultado;
 
     @Override
@@ -65,35 +68,43 @@ public class MainActivity extends AppCompatActivity {
 
     public String calculo(String Numero1, String Numero2, String Operacion){
         if(!Numero1.toString().isEmpty()) {
-            Num1 = Float.parseFloat(Numero1.trim());
+            Num1 = Double.parseDouble (Numero1.trim());
         }else {
-            Num1 = Float.parseFloat("0");
+            Num1 = new Double(0);
         }
         if(!Numero2.toString().isEmpty()){
-            Num2 = Float.parseFloat(Numero2.trim());
+            Num2 = Double.parseDouble(Numero2.trim());
         }else{
-            Num2 = Float.parseFloat("0");
+            Num2 = new Double(0);
         }
+        Locale.setDefault(Locale.US);
+        DecimalFormat num = new DecimalFormat("#,###.00");
 
         switch(Operacion) {
             case "+":
-                Resultado = Float.toString ( (Num1 + Num2 ));
+                Resultado = String.valueOf (num.format(Num1)) + "\n+\n" + String.valueOf (num.format(Num2)) + "\n---------------------------\n"  ;
+                Resultado = Resultado + String.valueOf (num.format( Num1 + Num2 ));
                 break;
+
             case "-":
-                Resultado = Float.toString ( (Num1 - Num2 ));
-                break;
+                    Resultado = String.valueOf (num.format(Num1)) + "\n-\n" + String.valueOf (num.format(Num2)) + "\n---------------------------\n"  ;
+                    Resultado = Resultado + String.valueOf (num.format( Num1 - Num2 ));
+                    break;
             case "*":
-                Resultado = Float.toString ( (Num1 * Num2 ));
+                Resultado = String.valueOf (num.format(Num1)) + "\n*\n" + String.valueOf (num.format(Num2)) + "\n---------------------------\n"  ;
+                Resultado = Resultado + String.valueOf (num.format( Num1 * Num2 ));
                 break;
             case "/":
                 if (Num2 != 0) {
-                    Resultado = Float.toString ( (Num1 / Num2 ));
+                    Resultado = String.valueOf (num.format(Num1)) + "\n/\n" + String.valueOf (num.format(Num2)) + "\n---------------------------\n"  ;
+                    Resultado = Resultado + String.valueOf (num.format( Num1 / Num2 ));
                 }else{
                     Resultado = "Indefinido";
                 }
                 break;
             default:
-                Resultado = Float.toString ( (Num1 + Num2 ));
+                Resultado = String.valueOf (num.format(Num1)) + "\n+\n" + String.valueOf (num.format(Num2)) + "\n---------------------------\n"  ;
+                Resultado = Resultado + String.valueOf (num.format( Num1 + Num2 ));
                 break;
         }
         return Resultado ;
